@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddfrwdb0ys0k2"]
+
+[ext_resource type="Script" path="res://Roulette Wheel/Scripts/wheel_slot.gd" id="1_ugrxb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orwa8"]
+size = Vector2(27.6821, 32)
+
+[node name="WheelSlot" type="Node2D"]
+script = ExtResource("1_ugrxb")
+color = 2
+
+[node name="Shape" type="Polygon2D" parent="."]
+color = Color(0.396078, 0.764706, 0.290196, 1)
+polygon = PackedVector2Array(-16.9612, -200, 16.9612, -200, 19.0813, -225, -19.0813, -225)
+
+[node name="Number" type="Label" parent="."]
+offset_left = -19.0813
+offset_top = -225.0
+offset_right = 19.0813
+offset_bottom = -200.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BallCollision" type="Area2D" parent="."]
+position = Vector2(0, -213)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallCollision"]
+shape = SubResource("RectangleShape2D_orwa8")

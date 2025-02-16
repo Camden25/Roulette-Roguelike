@@ -1,0 +1,32 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Roulette-Roguelike"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GGS="*res://addons/ggs/plugin/singleton/ggs.tscn"
+
+[display]
+
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/gdfxr/plugin.cfg", "res://addons/ggs/plugin.cfg", "res://addons/globalize-plugins/plugin.cfg", "res://addons/simple_shapes/plugin.cfg")
+
+[layer_names]
+
+2d_physics/layer_1="Ball"
+2d_physics/layer_2="Slots"

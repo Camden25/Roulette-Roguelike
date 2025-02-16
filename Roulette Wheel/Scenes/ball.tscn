@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4dexq7x273f6"]
+
+[ext_resource type="Script" path="res://Roulette Wheel/Scripts/ball.gd" id="1_csojc"]
+[ext_resource type="Script" path="res://addons/simple_shapes/shapes/CircleShape.gd" id="2_srk78"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4t36u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jf53r"]
+
+[node name="Ball" type="CharacterBody2D"]
+script = ExtResource("1_csojc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4t36u")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(10, 0, 9.51056, 3.09017, 8.09017, 5.87785, 5.87785, 8.09017, 3.09017, 9.51056, 6.12303e-16, 10, -3.09017, 9.51056, -5.87785, 8.09017, -8.09017, 5.87785, -9.51056, 3.09017, -10, 1.22461e-15, -9.51056, -3.09017, -8.09017, -5.87785, -5.87785, -8.09017, -3.09017, -9.51056, -1.83691e-15, -10, 3.09017, -9.51056, 5.87785, -8.09017, 8.09017, -5.87785, 9.51056, -3.09017)
+script = ExtResource("2_srk78")
+radius = 10
+points_num = 20
+
+[node name="SlotDetector" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlotDetector"]
+shape = SubResource("CircleShape2D_jf53r")
