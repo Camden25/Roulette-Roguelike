@@ -1,6 +1,7 @@
 @tool
 extends Node2D
 
+#editor buttons
 @export var generate_wheel: bool:
 	set(value):
 		value = false
@@ -10,10 +11,11 @@ extends Node2D
 		value = false
 		for i in wheel_parent.get_children():
 			i.queue_free()
+
 @export var inner_radius: int = 200
 @export var outer_radius: int = 225
 @export var number_order: Array[int]
-@export var color_order: Array[int]
+@export var color_order: Array[int] #0:Red, 1:Black, 2:Green
 @export var wheel_slot_scene: PackedScene
 @export var wheel_parent: Node2D
 

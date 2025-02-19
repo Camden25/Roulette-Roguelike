@@ -2,18 +2,20 @@
 extends Node2D
 class_name WheelSlot
 
+#editor buttons
+@export var generate_slot: bool:
+	set(value):
+		generate_slot_shape()
+
 @export var number: int
 @export var color: int #0:Red, 1:Black, 2:Green
 var colors: Array[Color] = [Color("c51919"), Color("181818"), Color("65c34a")]
 
-
-@export var generate_slot: bool:
-	set(value):
-		generate_slot_shape()
 var inner_radius: int = 200
 var outer_radius: int = 225
 var amount_of_slots: int = 37
 
+#flags
 var is_occupied: bool = false
 
 

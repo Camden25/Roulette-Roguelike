@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmjccdt8te6ou"]
+
+[ext_resource type="Script" path="res://ChipSystem/Scripts/chip.gd" id="1_ihkxq"]
+
+[sub_resource type="Gradient" id="Gradient_0r4j0"]
+offsets = PackedFloat32Array(0, 0.457778, 1)
+colors = PackedColorArray(0, 0.098877, 0.632813, 1, 0.156967, 0.0889893, 0.632813, 1, 0.04, 0.5725, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cq3cg"]
+gradient = SubResource("Gradient_0r4j0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="EvenSteven" type="Area2D"]
+script = ExtResource("1_ihkxq")
+chip_name = "EvenSteven"
+texture = SubResource("GradientTexture2D_cq3cg")
+bet_type = Array[String](["even"])
+score_change = 20.0

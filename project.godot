@@ -26,7 +26,16 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/gdfxr/plugin.cfg", "res://addons/ggs/plugin.cfg", "res://addons/globalize-plugins/plugin.cfg", "res://addons/simple_shapes/plugin.cfg")
 
+[global_group]
+
+RoundManager=""
+ScoreManager=""
+RouletteWheel=""
+Table=""
+
 [layer_names]
 
 2d_physics/layer_1="Ball"
 2d_physics/layer_2="Slots"
+2d_physics/layer_3="Chip"
+2d_physics/layer_4="Bet"

@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Ball
 
 
 @export var initial_speed: int = 6
@@ -12,27 +13,24 @@ var current_radius: float = 0
 @export var target_wheel: Wheel
 var landed_slot: WheelSlot
 
+var bounce_radius: float = 0
+var bounce_target: float = 0
+@export var max_bounces_left: int = 6
+@onready var bounces_left: int = max_bounces_left
+
+#flags
 var is_spinning: bool = false
 var is_decelerating: bool = false
 var is_falling: bool = false
 var is_bouncing: bool = false
 var landed: bool = false
 
-var bounce_radius: float = 0
-var bounce_target: float = 0
-var bounces_left: int = 6
-
 
 func _ready() -> void:
-	randomize()
-	is_decelerating = false
-	reference_angle = atan(position.y/position.x)
-	time_elapsed = 0
-	await get_tree().create_timer(2).timeout
-	current_radius = target_wheel.get_node("WheelGenerator").outer_radius+20
-	start()
-	await get_tree().create_timer(randf_range(0, (2*PI)/initial_speed)).timeout
-	start_deceleration()
+	choose_random_position()
+	reset()
+	if not self in target_wheel.active_balls:
+		target_wheel.active_balls.append(self)
 
 
 func _process(delta: float) -> void:
@@ -88,7 +86,28 @@ func speed_at_time(time) -> float:
 
 
 func start() -> void:
+	current_radius = target_wheel.get_node("WheelGenerator").outer_radius+20
 	is_spinning = true
+	await get_tree().create_timer(randf_range(0, (2*PI)/initial_speed)).timeout
+	start_deceleration()
+
+
+func choose_random_position() -> void:
+	var random_angle: float = randf_range(0, 2*PI)
+	reference_angle = random_angle
+	current_radius = target_wheel.get_node("WheelGenerator").outer_radius+20
+	position = Vector2(current_radius*cos(random_angle), current_radius*sin(random_angle))
+
+
+func reset() -> void:
+	if landed_slot:
+		landed_slot.is_occupied = false
+	landed = false
+	is_falling = false
+	is_bouncing = false
+	is_decelerating = false
+	bounces_left = max_bounces_left
+	time_elapsed = 0
 
 
 func bounce() -> void:
