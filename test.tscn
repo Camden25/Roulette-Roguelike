@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://f0qadswwkot5"]
+[gd_scene load_steps=17 format=3 uid="uid://f0qadswwkot5"]
 
 [ext_resource type="PackedScene" uid="uid://w28826mm8e1r" path="res://Roulette Wheel/Scenes/wheel.tscn" id="1_eddvk"]
 [ext_resource type="PackedScene" uid="uid://c4dexq7x273f6" path="res://Roulette Wheel/Scenes/ball.tscn" id="2_ylh11"]
@@ -6,13 +6,15 @@
 [ext_resource type="Script" path="res://Game Managers/round_manager.gd" id="4_nxb7j"]
 [ext_resource type="Script" path="res://Table/Scripts/red_section.gd" id="5_1i8hm"]
 [ext_resource type="Script" path="res://Table/Scripts/table.gd" id="5_1jpm7"]
-[ext_resource type="PackedScene" uid="uid://dghjix5oyggo2" path="res://Chips/Common/big_red.tscn" id="6_6rjxk"]
+[ext_resource type="Script" path="res://Game Managers/game_manager.gd" id="5_x3hq3"]
+[ext_resource type="PackedScene" uid="uid://dghjix5oyggo2" path="res://Chips/Epic/big_red.tscn" id="6_6rjxk"]
 [ext_resource type="Script" path="res://Table/Scripts/black_section.gd" id="7_oc7e5"]
 [ext_resource type="Script" path="res://Table/Scripts/even_section.gd" id="8_jnmse"]
 [ext_resource type="Script" path="res://Table/Scripts/odd_section.gd" id="9_8dmhg"]
 [ext_resource type="PackedScene" uid="uid://cmjccdt8te6ou" path="res://Chips/Common/even_steven.tscn" id="9_lt8jh"]
 [ext_resource type="PackedScene" uid="uid://doytrodox5ggj" path="res://Chips/Rare/elevator.tscn" id="11_18pfs"]
-[ext_resource type="PackedScene" uid="uid://0koga4rkq618" path="res://Shop/Scenes/Shop.tscn" id="13_o8pov"]
+[ext_resource type="PackedScene" uid="uid://0koga4rkq618" path="res://Shop/Scenes/shop_manager.tscn" id="13_o8pov"]
+[ext_resource type="PackedScene" uid="uid://c2udr844tpnn0" path="res://Chips/Rare/odd_steven.tscn" id="15_ysw82"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_de3ym"]
 size = Vector2(200, 75)
@@ -55,6 +57,16 @@ betting_sections = [NodePath("../Table/BettingSections/Red"), NodePath("../Table
 script = ExtResource("4_nxb7j")
 active_wheel = NodePath("../Wheel")
 
+[node name="GameManager" type="Node" parent="." groups=["GameManager"]]
+script = ExtResource("5_x3hq3")
+
+[node name="ShopManager" parent="." groups=["ShopManager"] instance=ExtResource("13_o8pov")]
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+
 [node name="Table" type="Node2D" parent="." groups=["Table"]]
 script = ExtResource("5_1jpm7")
 
@@ -94,6 +106,9 @@ max_chips = 2
 
 [node name="EvenSteven" parent="Table/BettingSections/Even" instance=ExtResource("9_lt8jh")]
 
+[node name="Elevator" parent="Table/BettingSections/Even" instance=ExtResource("11_18pfs")]
+position = Vector2(282, 7)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/BettingSections/Even"]
 shape = SubResource("RectangleShape2D_de3ym")
 
@@ -105,16 +120,9 @@ script = ExtResource("9_8dmhg")
 section_name = "odd"
 max_chips = 2
 
-[node name="Elevator" parent="Table/BettingSections/Odd" instance=ExtResource("11_18pfs")]
+[node name="OddSteven" parent="Table/BettingSections/Odd" instance=ExtResource("15_ysw82")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/BettingSections/Odd"]
 shape = SubResource("RectangleShape2D_de3ym")
-
-[node name="Shop" parent="." instance=ExtResource("13_o8pov")]
-offset_right = 1152.0
-offset_bottom = 648.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 1
 
 [editable path="Wheel"]

@@ -5,6 +5,7 @@ class_name RoundManager
 @export var active_wheel: Wheel
 
 @onready var score_manager: ScoreManager = get_tree().get_first_node_in_group("ScoreManager")
+@onready var game_manager: GameManager = get_tree().get_first_node_in_group("GameManager")
 
 #flags
 var round_over: bool = false
@@ -12,9 +13,10 @@ var shop_open: bool = false
 
 
 func _ready() -> void:
-	randomize()
-	await get_tree().create_timer(2).timeout
-	start_round()
+	pass
+	#randomize()
+	#await get_tree().create_timer(2).timeout
+	#start_round()
 
 
 func _process(_delta: float) -> void:
@@ -40,5 +42,8 @@ func end_round() -> void:
 	for ball: Ball in active_wheel.active_balls:
 		ball.reset()
 		ball.choose_random_position()
-	await get_tree().create_timer(1.5).timeout
-	start_round()
+	
+	game_manager.round_over()
+	
+	#await get_tree().create_timer(1.5).timeout
+	#start_round()

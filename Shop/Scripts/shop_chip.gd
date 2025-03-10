@@ -1,36 +1,19 @@
 extends Area2D
-class_name Chip
+class_name ShopChip
 
 
-@export var chip_name: String = "Default Chip"
-@export var texture: Texture
-@export var bet_type: Array[String] = ["any"]  # red, black, even, odd, high, low, 12
-@export var score_change: float = 0.0
-@export var multiplier: float = 1.0
+var chip: Chip
 
 var offset: Vector2 = Vector2.ZERO
 var target_position: Vector2 = Vector2.ZERO
 var lerp_speed: float = 0.2
 var potential_section: BettingSection
-var previous_section: BettingSection
 
 #flags
-var enabled: bool = true
 var dragging: bool = false
 
 
-# Called when the bet is being evaluated
-@warning_ignore("unused_parameter")
-func apply_effect(wheel: Wheel, wheel_slot: WheelSlot, result: int, payout: float) -> float:
-	if enabled:
-		payout += score_change
-		payout *= multiplier
-	return payout
-
-
 func _ready() -> void:
-	if get_parent() is BettingSection:
-		previous_section = get_parent()
 	create_image()
 	create_collision()
 
@@ -62,18 +45,15 @@ func _process(_delta) -> void:
 
 func snap_to_betting_section() -> void:
 	if potential_section and potential_section is BettingSection:
-		reparent(potential_section)
-		previous_section.determine_chips()
-		potential_section.determine_chips()
-		previous_section = potential_section
-		potential_section = null
-	if get_parent() is BettingSection:
-		target_position = get_parent().determine_chip_location(self)
+		chip.global_position = global_position
+		potential_section.add_child(chip)
+	else:
+		target_position = get_parent().global_position
 
 
 func create_image() -> void:
 	var chip_image: Sprite2D = Sprite2D.new()
-	chip_image.texture = texture
+	chip_image.texture = chip.texture
 	add_child(chip_image)
 
 
@@ -92,7 +72,3 @@ func create_collision() -> void:
 
 func set_potential_section(section: BettingSection) -> void:
 	potential_section = section
-
-
-func clear_potential_section() -> void:
-	potential_section = null

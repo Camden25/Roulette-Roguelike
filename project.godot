@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GGS="*res://addons/ggs/plugin/singleton/ggs.tscn"
+ChipDatabase="*res://ChipSystem/Scripts/chip_database.gd"
 
 [display]
 
@@ -32,6 +33,8 @@ RoundManager=""
 ScoreManager=""
 RouletteWheel=""
 Table=""
+GameManager=""
+ShopManager=""
 
 [layer_names]
 

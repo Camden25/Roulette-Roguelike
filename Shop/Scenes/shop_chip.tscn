@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo0g42xw448te"]
+
+[ext_resource type="Script" path="res://Shop/Scripts/shop_chip.gd" id="1_2euo5"]
+
+[node name="ShopChip" type="Area2D"]
+script = ExtResource("1_2euo5")
