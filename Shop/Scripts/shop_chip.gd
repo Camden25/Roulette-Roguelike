@@ -47,6 +47,7 @@ func snap_to_betting_section() -> void:
 	if potential_section and potential_section is BettingSection:
 		chip.global_position = global_position
 		potential_section.add_child(chip)
+		queue_free()
 	else:
 		target_position = get_parent().global_position
 
@@ -72,3 +73,7 @@ func create_collision() -> void:
 
 func set_potential_section(section: BettingSection) -> void:
 	potential_section = section
+
+
+func clear_potential_section() -> void:
+	potential_section = null

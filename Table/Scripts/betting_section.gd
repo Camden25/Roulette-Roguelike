@@ -49,9 +49,17 @@ func _on_area_entered(area) -> void:
 	if area is Chip:
 		if area.bet_type.has(section_name) and len(chips) < max_chips:
 			area.set_potential_section(self)
+	
+	if area is ShopChip:
+		if area.chip.bet_type.has(section_name) and len(chips) < max_chips:
+			area.set_potential_section(self)
 
 
 func _on_area_exited(area) -> void:
 	if area is Chip:
+		if area.potential_section == self:
+			area.clear_potential_section()
+	
+	if area is ShopChip:
 		if area.potential_section == self:
 			area.clear_potential_section()
