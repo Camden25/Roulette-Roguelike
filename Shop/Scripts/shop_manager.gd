@@ -22,7 +22,7 @@ func close_shop():
 
 func generate_shop_items():
 	available_chips.clear()
-	var chip_pool = ChipDatabase.get_random_chips(1)
+	var chip_pool = ChipDatabase.get_random_chips(3)
 	available_chips.append_array(chip_pool)
 	
 	

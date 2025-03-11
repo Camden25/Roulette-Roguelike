@@ -14,3 +14,4 @@ value_change = 1
 chip_name = "Elevator"
 texture = SubResource("GradientTexture2D_5wbob")
 bet_type = Array[String](["red", "black", "even", "odd"])
+rarity = 2

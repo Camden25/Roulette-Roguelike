@@ -16,4 +16,5 @@ script = ExtResource("1_klulc")
 chip_name = "Big Red"
 texture = SubResource("GradientTexture2D_2jngj")
 bet_type = Array[String](["red"])
+rarity = 3
 multiplier = 4.0

@@ -45,7 +45,6 @@ func determine_chips() -> void:
 
 
 func _on_area_entered(area) -> void:
-	print("Area entered")
 	if area is Chip:
 		if area.bet_type.has(section_name) and len(chips) < max_chips:
 			area.set_potential_section(self)

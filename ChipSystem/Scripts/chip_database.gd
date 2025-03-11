@@ -12,6 +12,13 @@ const RARE_PATH: String = "res://Chips/Rare/"
 const EPIC_PATH: String = "res://Chips/Epic/"
 const ELITE_PATH: String = "res://Chips/Elite/"
 
+const default_chip_values: Dictionary = {
+	"Common" : 10,
+	"Rare" : 15,
+	"Epic" : 25,
+	"Elite" : 50
+}
+
 
 func _ready():
 	load_chips()
@@ -46,6 +53,7 @@ func load_chips():
 		else:
 			print("Failed to open directory: " + dir_info["path"])
 	
+	print(common_chips)
 	print("Common Chips: ", common_chips.size())
 	print("Rare Chips: ", rare_chips.size())
 	print("Epic Chips: ", epic_chips.size())

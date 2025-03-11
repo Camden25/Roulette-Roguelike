@@ -16,5 +16,6 @@ script = ExtResource("1_oprqq")
 chip_name = "Odd Steven"
 texture = SubResource("GradientTexture2D_cq3cg")
 bet_type = Array[String](["odd"])
+rarity = 2
 score_change = 500.0
 multiplier = 5.0

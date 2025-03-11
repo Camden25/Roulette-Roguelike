@@ -5,6 +5,9 @@ class_name Chip
 @export var chip_name: String = "Default Chip"
 @export var texture: Texture
 @export var bet_type: Array[String] = ["any"]  # red, black, even, odd, high, low, 12
+@export var rarity: int # 1->Common, 2->Rare, 3->Epic, 4->Elite
+var rarity_name: String
+@export var value: int = 0
 @export var score_change: float = 0.0
 @export var multiplier: float = 1.0
 
@@ -26,6 +29,11 @@ func apply_effect(wheel: Wheel, wheel_slot: WheelSlot, result: int, payout: floa
 		payout += score_change
 		payout *= multiplier
 	return payout
+
+
+func _init() -> void:
+	determine_rarity()
+	determine_value()
 
 
 func _ready() -> void:
@@ -88,6 +96,22 @@ func create_collision() -> void:
 	chip_collision.shape = CircleShape2D.new()
 	chip_collision.shape.radius = 32
 	add_child(chip_collision)
+
+
+#FIXME
+#TODO Would prefer this to be based off chip database
+func determine_rarity() -> void:
+	var rarities: Array[String] = ["Common", "Rare", "Epic", "Elite"]
+	var rarity_index = rarity - 1
+	rarity_name = rarities[rarity_index]
+	print(rarity)
+	print(rarity_index)
+	print(rarity_name)
+
+
+func determine_value() -> void:
+	if value == 0:
+		value = ChipDatabase.default_chip_values[rarity_name]
 
 
 func set_potential_section(section: BettingSection) -> void:
